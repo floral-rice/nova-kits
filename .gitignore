@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+
+# pnpm
+.pnpm-store/
+
+# build
+dist/
+lib/
+es/
+*.log
+
+# vite
+.vite/
+.cache/
+
+# docs
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+
+# test
+coverage/
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# env
+.env
+.env.*
+!.env.example

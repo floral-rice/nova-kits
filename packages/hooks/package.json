@@ -1,0 +1,25 @@
+{
+  "name": "@nova-ui/hooks",
+  "version": "0.0.1",
+  "description": "Nova UI hooks",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "vue": "^3.5.24"
+  },
+  "devDependencies": {
+    "vite": "^7.2.4",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "vue-tsc": "^3.1.4",
+    "typescript": "^5.0.0"
+  }
+}
