@@ -9,7 +9,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'NovaUI',
-      fileName: 'nova-ui',
+      fileName: 'nova-kits',
     },
 
     rollupOptions: {

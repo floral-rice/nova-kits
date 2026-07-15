@@ -1,11 +1,14 @@
+<template>
+  <router-view />
+</template>
+
 <script setup lang="ts">
-// import ButtonDemo from './views/Button.vue';
 </script>
 
-<template>
-  <div class="app">
-    <h1>Nova UI Playground</h1>
-
-    <!-- <ButtonDemo /> -->
-  </div>
-</template>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+</style>
