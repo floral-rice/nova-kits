@@ -1,14 +1,18 @@
 {
   "name": "@nova-kits/components",
   "version": "0.0.1",
-  "description": "Nova Kits components",
+  "description": "Nova Kits UI components - 基于 Element Plus 二次开发",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./style.css": "./src/style.css"
+  },
   "scripts": {
     "build": "vite build"
   },
@@ -19,20 +23,10 @@
     "vue": "^3.5.24"
   },
   "devDependencies": {
-    "vite": "^7.2.4",
     "@vitejs/plugin-vue": "^6.0.0",
-    "vue-tsc": "^3.1.4",
-    "typescript": "^5.0.0",
-    "vue-component-meta": "^3.3.7"
-  },
-  "exports": {
-    ".": {
-      "types": "./src/index.ts",
-      "import": "./src/index.ts"
-    },
-    "./vite-plugin": {
-      "types": "./vite-plugin-nova-kits.d.ts",
-      "import": "./vite-plugin-nova-kits.js"
-    }
+    "sass": "^1.101.0",
+    "typescript": "^6.0.3",
+    "vite": "^7.2.4",
+    "vue-tsc": "^3.1.4"
   }
 }

@@ -4,6 +4,7 @@ import tseslint from 'typescript-eslint';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import vueParser from 'vue-eslint-parser';
+import globals from 'globals';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -15,18 +16,22 @@ export default [
   ...vue.configs['flat/recommended'],
 
   {
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
+  },
+
+  {
     files: ['**/*.{ts,tsx,vue}'],
 
     languageOptions: {
       parser: vueParser,
       parserOptions: {
         parser: tseslint.parser,
-        project: [
-          './tsconfig.json',
-          './packages/*/tsconfig.json',
-          './playground/tsconfig.json',
-          './docs/tsconfig.json',
-        ],
+        project: ['./tsconfig.json', './packages/*/tsconfig.json', './docs/tsconfig.json'],
 
         tsconfigRootDir: __dirname,
         extraFileExtensions: ['.vue'],
@@ -34,7 +39,7 @@ export default [
     },
 
     rules: {
-     // JS/TS
+      // JS/TS
       'no-console': 'off',
       'no-param-reassign': 'off',
       'no-useless-assignment': 'off', // 关闭 no-useless-assignment 规则，因为 Vue 模板中使用的变量会被误报
@@ -48,7 +53,10 @@ export default [
       '@typescript-eslint/no-unsafe-argument': 'warn',
       // 关闭默认 JS unused-vars，TS 用 warn
       'no-unused-vars': 'off',
-      '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
+      ],
       // Vue 模板绑定变量检查
       'vue/no-unused-vars': 'warn',
       // Vue 组件命名规则：允许单字组件名（如 index.vue）
@@ -57,6 +65,17 @@ export default [
       'vue/valid-template-root': 'off',
       // 不允许使用 any
       '@typescript-eslint/no-explicit-any': 'warn',
+      'vue/max-attributes-per-line': [
+        'error',
+        {
+          singleline: {
+            max: 3,
+          },
+          multiline: {
+            max: 1,
+          },
+        },
+      ],
     },
   },
 ];

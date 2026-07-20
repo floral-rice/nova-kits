@@ -20,6 +20,9 @@ docs/.vitepress/dist/
 
 # test
 coverage/
+.claude
+claude
+docs/superpowers/*
 
 # IDE
 .vscode/*
