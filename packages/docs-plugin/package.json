@@ -1,6 +1,7 @@
 {
   "name": "@nova-kits/docs-plugin",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "private": true,
   "description": "VitePress plugin for Nova Kits component library docs",
   "type": "module",
   "main": "./src/index.ts",
