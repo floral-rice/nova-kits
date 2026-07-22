@@ -13,7 +13,12 @@
     "test": "vitest",
     "changeset": "changeset",
     "version": "changeset version",
-    "release": "changeset publish",
+    "release": "pnpm build && changeset publish",
+    "release:beta": "pnpm build && changeset publish --tag beta",
+    "release:rc": "pnpm build && changeset publish --tag rc",
+    "prerelease:beta": "changeset pre enter beta && changeset version",
+    "prerelease:rc": "changeset pre enter rc && changeset version",
+    "prerelease:exit": "changeset pre exit",
     "prepare": "husky",
     "docs:preview": "vitepress preview docs"
   },
