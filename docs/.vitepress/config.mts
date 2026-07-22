@@ -32,6 +32,17 @@ export default defineConfig({
 
   vite: {
     plugins: [createNovaPlugin({ root })],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: (source: string, filePath: string) => {
+            if (filePath.includes('node_modules')) return source;
+            const varPath = resolve(root, 'packages/components/src/_variables').replace(/\\/g, '/');
+            return `@use "${varPath}" as *;\n${source}`;
+          },
+        },
+      },
+    },
   },
 
   markdown: {

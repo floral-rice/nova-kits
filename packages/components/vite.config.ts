@@ -3,12 +3,24 @@ import vue from '@vitejs/plugin-vue';
 import { resolve } from 'node:path';
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue() as any],
+
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: (source: string, filePath: string) => {
+          if (filePath.includes('node_modules')) return source;
+          const varPath = resolve(__dirname, 'src/_variables').replace(/\\/g, '/');
+          return `@use "${varPath}" as *;\n${source}`;
+        },
+      },
+    },
+  },
 
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'NovaUI',
+      name: 'NovaKits',
       fileName: 'nova-kits',
     },
 
