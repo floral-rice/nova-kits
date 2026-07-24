@@ -21,11 +21,12 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'NovaKits',
-      fileName: 'nova-kits',
+      fileName: (format) => `index.${format === 'es' ? 'esm' : 'umd'}.${format === 'es' ? 'js' : 'cjs'}`,
+      cssFileName: 'style',
     },
 
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'element-plus', 'splitpanes'],
       output: {
         globals: {
           vue: 'Vue',

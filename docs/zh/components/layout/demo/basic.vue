@@ -1,7 +1,13 @@
 <template>
-  <div style="height: 300px;">
-    <NLayout loading>
-      layout
+  <div style="height: 300px">
+    <NLayout>
+      <template #header>
+        <div>顶部</div>
+      </template>
+      <div>main</div>
+      <template #footer>
+        <div>底部</div>
+      </template>
     </NLayout>
   </div>
 </template>

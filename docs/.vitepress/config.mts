@@ -32,6 +32,11 @@ export default defineConfig({
 
   vite: {
     plugins: [createNovaPlugin({ root })],
+    resolve: {
+      alias: {
+        '@nova-kits/components': resolve(root, 'packages/components/src/index.ts'),
+      },
+    },
     css: {
       preprocessorOptions: {
         scss: {
@@ -81,7 +86,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/getting-started' },
-      { text: '组件', link: '/zh/components/button/' },
+      { text: '组件', link: '/zh/components/layout/' },
     ],
 
     sidebar: {
@@ -90,4 +95,7 @@ export default defineConfig({
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/' }],
   },
+
+  // 减少文档区域 padding
+  appearance: true,
 });
