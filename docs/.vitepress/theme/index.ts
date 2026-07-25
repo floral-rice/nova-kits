@@ -4,6 +4,7 @@ import type { Theme } from 'vitepress';
 import { createRouter, createMemoryHistory } from 'vue-router';
 import NovaDemo from '@nova-kits/docs-plugin/src/vue-components/NovaDemo.vue';
 import NovaApiDoc from '@nova-kits/docs-plugin/src/vue-components/NovaApiDoc.vue';
+import 'element-plus/dist/index.css';
 import './custom.css';
 
 const router = createRouter({
