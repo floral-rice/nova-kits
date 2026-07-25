@@ -1,5 +1,11 @@
 # @nova-kits/hooks
 
+## 1.0.2-alpha.0
+
+### Patch Changes
+
+- fix 打包组件及el组件的css，避免报错
+
 ## 1.0.1
 
 ### Patch Changes
