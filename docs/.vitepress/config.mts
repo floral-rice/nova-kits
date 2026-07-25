@@ -113,7 +113,7 @@ export default defineConfig({
       ],
     },
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/floral-rice/nova-kits' }],
   },
 
   // 减少文档区域 padding
