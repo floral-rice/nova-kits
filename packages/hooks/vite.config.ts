@@ -8,12 +8,12 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'NovaUI',
-      fileName: 'nova-kits',
+      name: 'NovaKits',
+      fileName: (format) => `index.${format === 'es' ? 'esm' : 'umd'}.${format === 'es' ? 'js' : 'cjs'}`,
     },
 
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'lodash-es'],
       output: {
         globals: {
           vue: 'Vue',

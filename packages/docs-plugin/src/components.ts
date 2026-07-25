@@ -11,14 +11,15 @@ function normalizeDirName(name: string): string {
 }
 
 /**
- * Read meta.json files to get component names.
- * Returns map of normalized directory name → component name (e.g., "button" → "NButton").
+ * Read meta.json files to get component and hook names.
+ * Returns map of normalized directory name → component name (e.g., "button" → "NButton", "use-request" → "useRequest").
  */
 async function readComponentNames(docsDir: string): Promise<Map<string, string>> {
-  const metaFiles = await scanFiles(docsDir, '*/components/*/meta.json');
+  const componentMetaFiles = await scanFiles(docsDir, '*/components/*/meta.json');
+  const hookMetaFiles = await scanFiles(docsDir, '*/hooks/*/meta.json');
   const nameMap = new Map<string, string>();
 
-  for (const metaFile of metaFiles) {
+  for (const metaFile of [...componentMetaFiles, ...hookMetaFiles]) {
     try {
       const content = await readFile(metaFile, 'utf-8');
       const meta = JSON.parse(content);

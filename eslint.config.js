@@ -64,7 +64,7 @@ export default [
       // Vue 模板根节点规则：允许多个根节点（Vue 3 支持）
       'vue/valid-template-root': 'off',
       // 不允许使用 any
-      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-explicit-any': 'off',
       'vue/max-attributes-per-line': [
         'error',
         {

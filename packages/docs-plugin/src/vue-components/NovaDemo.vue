@@ -1,6 +1,6 @@
 <template>
   <div class="nova-demo">
-    <div class="nova-demo-preview">
+    <div v-if="isVueDemo" class="nova-demo-preview">
       <component
         :is="demoComponent"
         v-if="demoComponent"
@@ -39,12 +39,18 @@ const props = defineProps<{
   demoKey: string;
 }>();
 
-const showSource = ref(false);
+const showSource = ref(true); // TypeScript demos show source by default
 
 const demo = computed(() => demos[props.demoKey]);
 
+// Check if this is a Vue demo (has component) or TypeScript demo (source only)
+const isVueDemo = computed(() => {
+  if (!demo.value) return false;
+  return typeof demo.value.component === 'function';
+});
+
 const demoComponent = computed(() => {
-  if (!demo.value) return null;
+  if (!isVueDemo.value) return null;
   return defineAsyncComponent(demo.value.component);
 });
 

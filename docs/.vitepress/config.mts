@@ -13,12 +13,21 @@ function transformDemoTag(content: string, envPath: string): string {
       const mdDir = dirname(envPath);
       const demoName = src.replace('./demo/', '').replace('.vue', '');
       const relPath = relative(absDocsDir, mdDir).replace(/\\/g, '/');
-      const pathMatch = relPath.match(/components\/([^/]+)$/);
 
+      // Match components pattern
+      const pathMatch = relPath.match(/components\/([^/]+)$/);
       if (pathMatch) {
         const demoKey = `${pathMatch[1]}/${demoName}`;
         return `<NovaDemo demoKey="${demoKey}" />`;
       }
+
+      // Match hooks pattern
+      const hookMatch = relPath.match(/hooks\/([^/]+)$/);
+      if (hookMatch) {
+        const demoKey = `hooks/${hookMatch[1]}/${demoName}`;
+        return `<NovaDemo demoKey="${demoKey}" />`;
+      }
+
       return _match;
     },
   );
@@ -35,6 +44,7 @@ export default defineConfig({
     resolve: {
       alias: {
         '@nova-kits/components': resolve(root, 'packages/components/src/index.ts'),
+        '@nova-kits/hooks': resolve(root, 'packages/hooks/src/index.ts'),
       },
     },
     css: {
@@ -87,10 +97,20 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/getting-started' },
       { text: '组件', link: '/zh/components/layout/' },
+      { text: 'Hooks', link: '/zh/hooks/use-request/' },
     ],
 
     sidebar: {
       '/zh/components/': await generateSidebar(root, 'docs'),
+      '/zh/hooks/': [
+        {
+          text: 'Hooks',
+          items: [
+            { text: '配置', link: '/zh/hooks/config' },
+            { text: 'useRequest', link: '/zh/hooks/use-request/' },
+          ],
+        },
+      ],
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/' }],
