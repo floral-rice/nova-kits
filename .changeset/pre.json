@@ -1,5 +1,5 @@
 {
-  "mode": "pre",
+  "mode": "exit",
   "tag": "alpha",
   "initialVersions": {
     "@nova-kits/components": "1.0.1",
