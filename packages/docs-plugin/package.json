@@ -10,9 +10,7 @@
     "./src/markdown-it-plugin": "./src/markdown-it-plugin.ts",
     "./src/vue-components/*": "./src/vue-components/*"
   },
-  "scripts": {
-    "build": "vite build"
-  },
+  "scripts": {},
   "dependencies": {
     "tinyglobby": "^0.2.10",
     "chokidar": "^4.0.0",
