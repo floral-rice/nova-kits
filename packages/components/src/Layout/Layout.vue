@@ -79,6 +79,7 @@ provideLayoutContext({
   flex-direction: column;
   background: #fff;
   position: relative;
+  overflow: hidden;
 
   &-header {
     padding: 0 $padding-md;

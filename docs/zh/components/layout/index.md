@@ -2,6 +2,10 @@
 
 页面最外层包裹，常与 Section 组合，带有 loading。支持可拖拽侧边栏、标签页布局和 Portal 机制。
 
+## API
+
+<NovaApiDoc component="Layout" />
+
 ## 基础用法
 
 <demo src="./demo/basic.vue"/>
@@ -23,7 +27,3 @@
 子组件通过 NLayoutPortal 将内容渲染到 Layout 的 header/footer 区域
 
 <demo src="./demo/portal.vue"/>
-
-## API
-
-<NovaApiDoc component="Layout" />

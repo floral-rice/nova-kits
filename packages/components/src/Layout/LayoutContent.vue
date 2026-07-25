@@ -38,7 +38,9 @@
       </div>
     </div>
     <div :class="[prefix('content')]">
-      <slot />
+      <div :class="[prefix('content-scroll')]">
+        <slot />
+      </div>
     </div>
   </div>
 </template>
@@ -113,7 +115,6 @@ onUnmounted(() => {
   &-content-wrapper {
     flex: 1;
     min-height: 0;
-    height: 100%;
     display: flex;
     flex-direction: row;
     overflow: hidden;
@@ -125,15 +126,20 @@ onUnmounted(() => {
     display: flex;
     flex-direction: row;
     align-items: stretch;
+    overflow: hidden;
   }
 
   &-left {
     overflow: hidden;
     transition: width 0.2s;
+    display: flex;
+    flex-direction: column;
 
     &-body {
-      height: 100%;
+      flex: 1;
+      min-height: 0;
       overflow-x: hidden;
+      overflow-y: auto;
     }
   }
 
@@ -180,9 +186,16 @@ onUnmounted(() => {
   &-content {
     flex: 1;
     min-width: 0;
-    overflow: auto;
+    min-height: 0;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
+  }
+
+  &-content-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
   }
 }
 </style>

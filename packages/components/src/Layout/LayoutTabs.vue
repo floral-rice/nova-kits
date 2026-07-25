@@ -148,6 +148,9 @@ provideLayoutContext({
 
     :deep(.el-tab-pane) {
       height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
   }
 

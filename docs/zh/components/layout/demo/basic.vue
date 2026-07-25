@@ -1,10 +1,12 @@
 <template>
-  <div style="height: 300px">
+  <div style="height: 300px; overflow: hidden">
     <NLayout>
       <template #header>
         <div>顶部</div>
       </template>
-      <div>main</div>
+      <div style="height: 1000px">
+        main
+      </div>
       <template #footer>
         <div>底部</div>
       </template>
