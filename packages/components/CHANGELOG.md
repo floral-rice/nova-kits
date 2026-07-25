@@ -1,5 +1,12 @@
 # @nova-kits/components
 
+## 1.0.2
+
+### Patch Changes
+
+- v1.0.2正式发布
+- 3c05445: fix 打包组件及el组件的css，避免报错
+
 ## 1.0.2-alpha.0
 
 ### Patch Changes
