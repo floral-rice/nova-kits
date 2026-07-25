@@ -10,7 +10,7 @@ export default defineConfig({
       scss: {
         additionalData: (source: string, filePath: string) => {
           if (filePath.includes('node_modules')) return source;
-          const varPath = resolve(__dirname, 'src/_variables').replace(/\\/g, '/');
+          const varPath = resolve(__dirname, 'src/styles/_variables').replace(/\\/g, '/');
           return `@use "${varPath}" as *;\n${source}`;
         },
       },
