@@ -14,8 +14,9 @@ pnpm add @nova-kits/components @nova-kits/hooks
 
 ## 使用
 
+```vue
 import '@nova-kits/components/style.css';
-import 'element-plus/dist/index.css';
+```
 
 ```vue
 &lt;script setup lang="ts"&gt; import { NLayout } from '@nova-kits/components'; &lt;/script&gt;
