@@ -1,0 +1,38 @@
+{
+  "name": "@nova-kits/kits",
+  "version": "1.0.0",
+  "description": "Nova Kits - 基础布局组件",
+  "type": "module",
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.umd.cjs"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly --outDir dist"
+  },
+  "dependencies": {
+    "@nova-kits/components": "workspace:*",
+    "@nova-kits/hooks": "workspace:*",
+    "vue-router": "^4.6.4"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.24"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.0",
+    "sass": "^1.101.0",
+    "typescript": "^6.0.3",
+    "vite": "^7.2.4",
+    "vue-tsc": "^3.1.4"
+  }
+}
