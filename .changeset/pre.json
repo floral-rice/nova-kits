@@ -1,0 +1,10 @@
+{
+  "mode": "exit",
+  "tag": "alpha",
+  "initialVersions": {
+    "@nova-kits/components": "1.0.2",
+    "@nova-kits/docs-plugin": "1.0.1",
+    "@nova-kits/hooks": "1.0.2"
+  },
+  "changesets": ["cyan-views-drop"]
+}
