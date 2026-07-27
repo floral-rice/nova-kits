@@ -96,6 +96,9 @@ importers:
       '@nova-kits/hooks':
         specifier: workspace:*
         version: link:../packages/hooks
+      '@nova-kits/kits':
+        specifier: workspace:*
+        version: link:../packages/kits
       vue:
         specifier: ^3.5.24
         version: 3.5.39(typescript@6.0.3)
@@ -163,6 +166,37 @@ importers:
       '@vitejs/plugin-vue':
         specifier: ^6.0.0
         version: 6.0.7(vite@7.3.6(@types/node@24.13.3)(jiti@2.6.1)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3))
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^7.2.4
+        version: 7.3.6(@types/node@24.13.3)(jiti@2.6.1)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0)
+      vue-tsc:
+        specifier: ^3.1.4
+        version: 3.3.7(typescript@6.0.3)
+
+  packages/kits:
+    dependencies:
+      '@nova-kits/components':
+        specifier: workspace:*
+        version: link:../components
+      '@nova-kits/hooks':
+        specifier: workspace:*
+        version: link:../hooks
+      element-plus:
+        specifier: ^2.14.2
+        version: 2.14.2(vue@3.5.39(typescript@6.0.3))
+    devDependencies:
+      '@element-plus/icons-vue':
+        specifier: ^2.3.2
+        version: 2.3.2(vue@3.5.39(typescript@6.0.3))
+      '@vitejs/plugin-vue':
+        specifier: ^6.0.0
+        version: 6.0.7(vite@7.3.6(@types/node@24.13.3)(jiti@2.6.1)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3))
+      sass:
+        specifier: ^1.101.0
+        version: 1.101.0
       typescript:
         specifier: ^6.0.3
         version: 6.0.3

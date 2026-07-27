@@ -45,6 +45,7 @@ export default defineConfig({
       alias: {
         '@nova-kits/components': resolve(root, 'packages/components/src/index.ts'),
         '@nova-kits/hooks': resolve(root, 'packages/hooks/src/index.ts'),
+        '@nova-kits/kits': resolve(root, 'packages/kits/src/index.ts'),
       },
     },
     css: {
