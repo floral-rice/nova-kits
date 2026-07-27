@@ -7,30 +7,27 @@ const root = resolve(import.meta.dirname, '../..');
 const absDocsDir = resolve(root, 'docs');
 
 function transformDemoTag(content: string, envPath: string): string {
-  return content.replace(
-    /<demo\s+src="([^"]+)"\s*\/>/g,
-    (_match: string, src: string) => {
-      const mdDir = dirname(envPath);
-      const demoName = src.replace('./demo/', '').replace('.vue', '');
-      const relPath = relative(absDocsDir, mdDir).replace(/\\/g, '/');
+  return content.replace(/<demo\s+src="([^"]+)"\s*\/>/g, (_match: string, src: string) => {
+    const mdDir = dirname(envPath);
+    const demoName = src.replace('./demo/', '').replace('.vue', '');
+    const relPath = relative(absDocsDir, mdDir).replace(/\\/g, '/');
 
-      // Match components pattern
-      const pathMatch = relPath.match(/components\/([^/]+)$/);
-      if (pathMatch) {
-        const demoKey = `${pathMatch[1]}/${demoName}`;
-        return `<NovaDemo demoKey="${demoKey}" />`;
-      }
+    // Match components pattern
+    const pathMatch = relPath.match(/components\/([^/]+)$/);
+    if (pathMatch) {
+      const demoKey = `${pathMatch[1]}/${demoName}`;
+      return `<NovaDemo demoKey="${demoKey}" />`;
+    }
 
-      // Match hooks pattern
-      const hookMatch = relPath.match(/hooks\/([^/]+)$/);
-      if (hookMatch) {
-        const demoKey = `hooks/${hookMatch[1]}/${demoName}`;
-        return `<NovaDemo demoKey="${demoKey}" />`;
-      }
+    // Match hooks pattern
+    const hookMatch = relPath.match(/hooks\/([^/]+)$/);
+    if (hookMatch) {
+      const demoKey = `hooks/${hookMatch[1]}/${demoName}`;
+      return `<NovaDemo demoKey="${demoKey}" />`;
+    }
 
-      return _match;
-    },
-  );
+    return _match;
+  });
 }
 
 export default defineConfig({
@@ -47,26 +44,14 @@ export default defineConfig({
         '@nova-kits/hooks': resolve(root, 'packages/hooks/src/index.ts'),
       },
     },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: (source: string, filePath: string) => {
-            if (filePath.includes('node_modules')) return source;
-            const varPath = resolve(root, 'packages/components/src/styles/_variables').replace(/\\/g, '/');
-            return `@use "${varPath}" as *;\n${source}`;
-          },
-        },
-      },
-    },
   },
 
   markdown: {
-    config: (md) => {
+    config: md => {
       // Handle html_block tokens (demo on its own line with blank lines around it)
       const defaultHtmlBlock =
         md.renderer.rules.html_block ||
-        ((tokens, idx, options, _env, self) =>
-          self.renderToken(tokens, idx, options));
+        ((tokens, idx, options, _env, self) => self.renderToken(tokens, idx, options));
 
       md.renderer.rules.html_block = (tokens, idx, options, env, self) => {
         const token = tokens[idx];
@@ -79,8 +64,7 @@ export default defineConfig({
       // Handle html_inline tokens (demo inside a paragraph)
       const defaultHtmlInline =
         md.renderer.rules.html_inline ||
-        ((tokens, idx, options, _env, self) =>
-          self.renderToken(tokens, idx, options));
+        ((tokens, idx, options, _env, self) => self.renderToken(tokens, idx, options));
 
       md.renderer.rules.html_inline = (tokens, idx, options, env, self) => {
         const token = tokens[idx];

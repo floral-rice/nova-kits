@@ -50,27 +50,14 @@
 </template>
 
 <script setup lang="ts">
-  import { type ClassValue, type StyleValue, computed, useId } from 'vue';
+  import { computed, useId } from 'vue';
   import { ElTabs, ElTabPane } from 'element-plus';
   import { prefixClassName } from '../utils';
   import LayoutContent from './LayoutContent.vue';
   import { provideLayoutContext } from './composables/useLayoutContext';
+  import type { Tab, LayoutTabsProps } from './typing';
 
   const prefix = prefixClassName('layout');
-
-  export interface Tab {
-    label?: string;
-    key: string;
-  }
-
-  export interface LayoutTabsProps {
-    tabs?: Tab[];
-    activeKey?: string;
-    defaultSidebarWidth?: number;
-    collapsed?: boolean;
-    class?: ClassValue;
-    style?: StyleValue;
-  }
 
   const props = withDefaults(defineProps<LayoutTabsProps>(), {
     tabs: () => [],
@@ -122,7 +109,7 @@
     }
 
     &-header {
-      padding: 0 $padding-md;
+      padding: 0 var(--nk-padding-md);
       flex-shrink: 0;
     }
 
@@ -140,7 +127,7 @@
       flex-direction: column;
 
       :deep(.el-tabs__header) {
-        margin: 0 $padding-md;
+        margin: 0 var(--nk-padding-md);
         flex-shrink: 0;
       }
 
@@ -165,7 +152,7 @@
       justify-content: center;
       box-sizing: border-box;
       height: 44px;
-      padding: 0 $padding-md;
+      padding: 0 var(--nk-padding-md);
       background: #fff;
       box-shadow: inset 0 1px 0 0 #dfdfdf;
       flex-shrink: 0;

@@ -1,14 +1,16 @@
-// 间距
-$padding-xs: 4px;
-$padding-sm: 8px;
-$padding-md: 12px;
-$padding-lg: 24px;
-$padding-xl: 32px;
+:root {
+  // 间距
+  --nk-padding-xs: 4px;
+  --nk-padding-sm: 8px;
+  --nk-padding-md: 12px;
+  --nk-padding-lg: 24px;
+  --nk-padding-xl: 32px;
 
-// 字体大小
-$font-xs: 12px;
-$font-sm: 13px;
-$font-md: 14px;
-$font-lg: 16px;
-$font-xl: 18px;
-$font-xxl: 20px;
+  // 字体大小
+  --nk-font-xs: 12px;
+  --nk-font-sm: 13px;
+  --nk-font-md: 14px;
+  --nk-font-lg: 16px;
+  --nk-font-xl: 18px;
+  --nk-font-xxl: 20px;
+}
