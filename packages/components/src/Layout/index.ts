@@ -3,6 +3,7 @@ export { default as NLayoutTabs } from './LayoutTabs.vue';
 export { default as NLayoutPortal } from './LayoutPortal.vue';
 export { default as NLayoutContent } from './LayoutContent.vue';
 export { useTabFocus } from './composables/useLayoutContext';
+export type * from './typing';
 
 // 复合组件模式：NLayout.Tabs, NLayout.Portal
 import _NLayout from './Layout.vue';

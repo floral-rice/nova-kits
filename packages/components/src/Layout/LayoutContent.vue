@@ -59,14 +59,11 @@ import { ref, computed } from 'vue';
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
 import { prefixClassName } from '../utils';
+import type { LayoutContentProps } from './typing';
 
 const prefix = prefixClassName('layout');
 
-const props = withDefaults(defineProps<{
-  defaultSidebarWidth?: number;
-  collapsed?: boolean;
-  containerWidth?: number;
-}>(), {
+const props = withDefaults(defineProps<LayoutContentProps>(), {
   defaultSidebarWidth: 242,
   collapsed: false,
   containerWidth: 1000,
@@ -143,13 +140,13 @@ function toggleCollapse() {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: $padding-md;
+    width: var(--nk-padding-md);
     height: 32px;
     background: var(--el-bg-color, #fff);
     border: 1px solid var(--el-border-color-lighter);
     border-right: none;
-    border-top-right-radius: $padding-xs;
-    border-bottom-right-radius: $padding-xs;
+    border-top-right-radius: var(--nk-padding-xs);
+    border-bottom-right-radius: var(--nk-padding-xs);
     cursor: pointer;
     transform: translateY(-50%);
     transition: transform 0.3s, color 0.2s;

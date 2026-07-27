@@ -7,10 +7,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useLayoutContext } from './composables/useLayoutContext';
+import type { LayoutPortalProps } from './typing';
 
-const props = defineProps<{
-  to: 'header' | 'footer';
-}>();
+const props = defineProps<LayoutPortalProps>();
 
 const ctx = useLayoutContext();
 

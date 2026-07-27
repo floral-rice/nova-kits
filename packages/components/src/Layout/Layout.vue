@@ -35,20 +35,13 @@
 </template>
 
 <script setup lang="ts">
-  import { type ClassValue, type StyleValue, useId, computed } from 'vue';
+  import { useId, computed } from 'vue';
   import { prefixClassName } from '../utils';
   import LayoutContent from './LayoutContent.vue';
   import { provideLayoutContext } from './composables/useLayoutContext';
+  import type { LayoutProps } from './typing';
 
   const prefix = prefixClassName('layout');
-
-  export interface LayoutProps {
-    defaultSidebarWidth?: number;
-    collapsed?: boolean;
-    activeKey?: string;
-    class?: ClassValue;
-    style?: StyleValue;
-  }
 
   const props = withDefaults(defineProps<LayoutProps>(), {
     defaultSidebarWidth: 242,
@@ -85,7 +78,7 @@
     overflow: hidden;
 
     &-header {
-      padding: 0 $padding-md;
+      padding: 0 var(--nk-padding-md);
       flex-shrink: 0;
     }
 
@@ -95,7 +88,7 @@
       justify-content: center;
       box-sizing: border-box;
       height: 44px;
-      padding: 0 $padding-md;
+      padding: 0 var(--nk-padding-md);
       background: #fff;
       box-shadow: inset 0 1px 0 0 #dfdfdf;
       flex-shrink: 0;
