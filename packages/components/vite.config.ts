@@ -14,7 +14,7 @@ export default defineConfig({
     },
 
     rollupOptions: {
-      external: ['vue', 'element-plus', 'splitpanes'],
+      external: ['vue'],
       output: {
         globals: {
           vue: 'Vue',
