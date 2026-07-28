@@ -67,15 +67,17 @@ const contextMenu = reactive({
   index: -1,
 });
 
+const hideContextMenu = () => {
+  contextMenu.visible = false;
+};
+
 const showContextMenu = (e: MouseEvent, index: number) => {
-  contextMenu.visible = true;
+  // 先关闭已有的菜单，再显示新菜单
+  hideContextMenu();
   contextMenu.x = e.clientX;
   contextMenu.y = e.clientY;
   contextMenu.index = index;
-};
-
-const hideContextMenu = () => {
-  contextMenu.visible = false;
+  contextMenu.visible = true;
 };
 
 const handleRefresh = () => {
@@ -95,10 +97,12 @@ const handleCloseAll = () => {
 
 onMounted(() => {
   document.addEventListener('click', hideContextMenu);
+  document.addEventListener('contextmenu', hideContextMenu);
 });
 
 onUnmounted(() => {
   document.removeEventListener('click', hideContextMenu);
+  document.removeEventListener('contextmenu', hideContextMenu);
 });
 </script>
 
@@ -119,21 +123,21 @@ onUnmounted(() => {
     border-radius: 4px;
     cursor: pointer;
     white-space: nowrap;
-    font-size: $font-sm;
-    color: #666;
+    font-size: var(--nk-font-sm, 12px);
+    color: var(--nk-text-secondary, #666);
     transition: all 0.2s;
 
     &:hover {
-      background: #f5f5f5;
+      background: var(--nk-bg-hover, #f5f5f5);
     }
 
     &--active {
-      color: #409eff;
-      background: #ecf5ff;
+      color: var(--nk-color-primary, #409eff);
+      background: var(--nk-bg-primary-light, #ecf5ff);
     }
 
     &--fixed {
-      color: #333;
+      color: var(--nk-text-primary, #333);
     }
   }
 
@@ -143,7 +147,7 @@ onUnmounted(() => {
     transition: all 0.2s;
 
     &:hover {
-      background: #d9d9d9;
+      background: var(--nk-bg-close-hover, #d9d9d9);
       color: #fff;
     }
   }
@@ -151,7 +155,7 @@ onUnmounted(() => {
   &__context-menu {
     position: fixed;
     z-index: 9999;
-    background: #fff;
+    background: var(--nk-bg-menu, #fff);
     border-radius: 4px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
     padding: 4px 0;
@@ -159,12 +163,12 @@ onUnmounted(() => {
 
     &-item {
       padding: 8px 16px;
-      font-size: $font-sm;
+      font-size: var(--nk-font-sm, 12px);
       cursor: pointer;
       transition: background 0.2s;
 
       &:hover {
-        background: #f5f5f5;
+        background: var(--nk-bg-hover, #f5f5f5);
       }
     }
   }

@@ -18,7 +18,7 @@ export default function useAuth(auth?: BasicLayoutProps['auth']): {
     }
 
     try {
-      const res = await auth.check();
+      const res: unknown = await auth.check();
       auth.onSuccess?.(res);
     } catch (err) {
       auth.onFail?.(err as Error);
@@ -30,14 +30,19 @@ export default function useAuth(auth?: BasicLayoutProps['auth']): {
         if (/^(?:https?:)?\/\//.test(auth.redirectURL)) {
           // 外部地址
           const url = new URL(auth.redirectURL);
-          url.searchParams.set('redirect', currentUrl);
+          const search = new URLSearchParams(url.search);
+          search.set('redirect', currentUrl);
+          url.search = search.toString();
           window.location.href = url.toString();
         } else {
-          // 内部路由
-          const [pathname, search] = auth.redirectURL.split('?');
-          const params = new URLSearchParams(search || '');
-          params.set('redirect', currentUrl);
-          window.location.href = `${pathname}?${params.toString()}`;
+          // 内部路由，用正则解析 pathname 和 search
+          const result = /([^?]*)(\?.*)?/.exec(auth.redirectURL);
+          if (result !== null) {
+            const pathname = result[1];
+            const search = new URLSearchParams(result[2]);
+            search.set('redirect', currentUrl);
+            window.location.href = `${pathname}?${search.toString()}`;
+          }
         }
       }
     } finally {

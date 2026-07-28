@@ -184,9 +184,6 @@ importers:
       '@nova-kits/hooks':
         specifier: workspace:*
         version: link:../hooks
-      element-plus:
-        specifier: ^2.14.2
-        version: 2.14.2(vue@3.5.39(typescript@6.0.3))
     devDependencies:
       '@element-plus/icons-vue':
         specifier: ^2.3.2

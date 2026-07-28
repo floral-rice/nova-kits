@@ -5,8 +5,8 @@ export interface MenuItem {
   name: string;
   /** 路由路径，外部链接以 http/https 开头 */
   path?: string;
-  /** 图标，字符串为 icon 名称，组件为自定义渲染 */
-  icon?: string | Component;
+  /** 图标组件 */
+  icon?: Component;
   /** 子菜单，最多支持三级 */
   children?: MenuItem[];
   /** 权限标识，字符串或字符串数组 */
@@ -35,6 +35,8 @@ export interface BasicLayoutProps {
   authorities?: string[];
   /** 固定标签页（如首页），不可关闭 */
   topTabs?: { title: string; path: string }[];
+  /** 侧边栏是否折叠 */
+  collapse?: boolean;
   /** 鉴权配置 */
   auth?: {
     /** 鉴权失败时的重定向地址 */

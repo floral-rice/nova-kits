@@ -52,9 +52,9 @@ defineEmits<{
   display: flex;
   align-items: center;
   height: 50px;
-  padding: 0 $padding-lg;
-  background: #fff;
-  border-bottom: 1px solid #e8e8e8;
+  padding: 0 var(--nk-padding-lg, 16px);
+  background: var(--nk-bg-header, #fff);
+  border-bottom: 1px solid var(--nk-border-color, #e8e8e8);
   flex-shrink: 0;
 
   &__left {
@@ -75,9 +75,9 @@ defineEmits<{
   }
 
   &__title {
-    font-size: $font-lg;
+    font-size: var(--nk-font-lg, 16px);
     font-weight: 600;
-    color: #333;
+    color: var(--nk-text-primary, #333);
     white-space: nowrap;
   }
 

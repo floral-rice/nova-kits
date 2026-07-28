@@ -35,7 +35,8 @@ export default function useTabs(topTabs?: { title: string; path: string }[]): {
     const existingIndex = tabs.value.findIndex((t) => t.path === tab.path);
 
     if (existingIndex >= 0) {
-      // 已存在，激活
+      // 已存在，激活并同步标题
+      tabs.value[existingIndex].title = tab.title;
       active.value = existingIndex;
     } else {
       // 新增
@@ -60,20 +61,22 @@ export default function useTabs(topTabs?: { title: string; path: string }[]): {
   // 关闭标签
   const closeTab = (index: number) => {
     const tab = tabs.value[index];
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- array index access can return undefined at runtime
-    if (!tab || !tab.closable) return;
+    if (!tab || !tab.closable) return; // eslint-disable-line @typescript-eslint/no-unnecessary-condition
 
     tabs.value.splice(index, 1);
 
-    // 调整激活索引
+    if (tabs.value.length === 0) {
+      active.value = -1;
+      router.push('/');
+      return;
+    }
+
     if (index <= active.value) {
       active.value = Math.max(0, active.value - 1);
     }
 
-    // 导航到当前激活的标签
     const currentTab = tabs.value[active.value];
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- array index access can return undefined at runtime
-    if (currentTab && currentTab.path !== route.path) {
+    if (currentTab && currentTab.path !== route.path) { // eslint-disable-line @typescript-eslint/no-unnecessary-condition
       router.push(currentTab.path);
     }
   };
@@ -81,20 +84,32 @@ export default function useTabs(topTabs?: { title: string; path: string }[]): {
   // 刷新标签
   const refreshTab = (index: number) => {
     const tab = tabs.value[index];
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- array index access can return undefined at runtime
-    if (!tab) return;
+    if (!tab) return; // eslint-disable-line @typescript-eslint/no-unnecessary-condition
     tab.refreshCount += 1;
   };
 
   // 关闭其他标签
   const closeOtherTabs = () => {
     const currentTab = tabs.value[active.value];
-    tabs.value = [
-      ...defaultTabs,
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- array index access can return undefined at runtime
-      ...(currentTab && currentTab.closable ? [currentTab] : []),
-    ];
-    active.value = tabs.value.length - 1;
+    if (!currentTab) return; // eslint-disable-line @typescript-eslint/no-unnecessary-condition
+
+    const newTabs: TabItem[] = [];
+    let newActive = -1;
+
+    tabs.value.forEach((tab, index) => {
+      if (index === active.value) {
+        newActive = newTabs.length;
+        newTabs.push(tab);
+      } else if (!tab.closable) {
+        newTabs.push(tab);
+        if (index < active.value) {
+          newActive = newTabs.length - 1;
+        }
+      }
+    });
+
+    tabs.value = newTabs;
+    active.value = newActive >= 0 ? newActive : 0;
   };
 
   // 关闭所有标签
@@ -104,6 +119,8 @@ export default function useTabs(topTabs?: { title: string; path: string }[]): {
 
     if (defaultTabs.length > 0 && defaultTabs[0].path !== route.path) {
       router.push(defaultTabs[0].path);
+    } else if (defaultTabs.length === 0) {
+      router.push('/');
     }
   };
 
@@ -114,7 +131,8 @@ export default function useTabs(topTabs?: { title: string; path: string }[]): {
       const matched = route.matched;
       if (matched.length > 0) {
         const title = (route.meta.title as string) || '';
-        addTab({ title, path: route.path });
+        if (!title && !route.name) return;
+        addTab({ title: title || (route.name as string) || route.path, path: route.path });
       }
     },
     { immediate: true },

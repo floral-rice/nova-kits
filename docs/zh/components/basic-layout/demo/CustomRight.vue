@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 400px; border: 1px solid #eee">
+  <div style="height: 400px; border: 1px solid #eee; overflow: hidden;">
     <NBasicLayout title="管理系统" :menus="menus">
       <template #right>
         <el-avatar :size="32" src="https://via.placeholder.com/32" />

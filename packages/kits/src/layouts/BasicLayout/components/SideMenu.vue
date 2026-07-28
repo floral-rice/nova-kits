@@ -1,6 +1,12 @@
 <template>
-  <aside class="nk-basic-layout-menu">
-    <el-scrollbar>
+  <aside :class="['nk-basic-layout-menu', { 'nk-basic-layout-menu--collapsed': collapse }]">
+    <el-scrollbar wrap-class="nk-basic-layout-menu__scroll-wrap">
+      <div class="nk-basic-layout-menu__toggle" @click="$emit('update:collapse', !collapse)">
+        <el-icon>
+          <Fold v-if="!collapse" />
+          <Expand v-else />
+        </el-icon>
+      </div>
       <el-menu
         :default-active="defaultActive"
         :collapse="collapse"
@@ -12,7 +18,7 @@
           <el-sub-menu v-if="menu.children && menu.children.length > 0" :index="menu.path || menu.name">
             <template #title>
               <el-icon v-if="menu.icon">
-                <component :is="menu.icon" v-if="typeof menu.icon !== 'string'" />
+                <component :is="menu.icon" />
               </el-icon>
               <span>{{ menu.name }}</span>
             </template>
@@ -22,7 +28,7 @@
               <el-sub-menu v-if="child.children && child.children.length > 0" :index="child.path || child.name">
                 <template #title>
                   <el-icon v-if="child.icon">
-                    <component :is="child.icon" v-if="typeof child.icon !== 'string'" />
+                    <component :is="child.icon" />
                   </el-icon>
                   <span>{{ child.name }}</span>
                 </template>
@@ -32,7 +38,7 @@
                   :index="grandchild.path"
                 >
                   <el-icon v-if="grandchild.icon">
-                    <component :is="grandchild.icon" v-if="typeof grandchild.icon !== 'string'" />
+                    <component :is="grandchild.icon" />
                   </el-icon>
                   <span>{{ grandchild.name }}</span>
                 </el-menu-item>
@@ -41,7 +47,7 @@
               <!-- 二级无子菜单 -->
               <el-menu-item v-else :index="child.path">
                 <el-icon v-if="child.icon">
-                  <component :is="child.icon" v-if="typeof child.icon !== 'string'" />
+                  <component :is="child.icon" />
                 </el-icon>
                 <span>{{ child.name }}</span>
               </el-menu-item>
@@ -51,7 +57,7 @@
           <!-- 无子菜单 -->
           <el-menu-item v-else :index="menu.path">
             <el-icon v-if="menu.icon">
-              <component :is="menu.icon" v-if="typeof menu.icon !== 'string'" />
+              <component :is="menu.icon" />
             </el-icon>
             <template #title>
               {{ menu.name }}
@@ -65,12 +71,17 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import { Fold, Expand } from '@element-plus/icons-vue';
 import type { MenuItem } from '../typings';
 
-const props = defineProps<{
+defineProps<{
   menus: MenuItem[];
   defaultActive?: string;
   collapse?: boolean;
+}>();
+
+defineEmits<{
+  'update:collapse': [value: boolean];
 }>();
 
 const router = useRouter();
@@ -88,14 +99,77 @@ const handleSelect = (index: string) => {
 .nk-basic-layout-menu {
   width: 220px;
   height: 100%;
-  background: #fff;
-  border-right: 1px solid #e8e8e8;
+  overflow: hidden;
+  background: var(--nk-bg-menu, #fff);
+  border-right: 1px solid var(--nk-border-color, #e8e8e8);
   flex-shrink: 0;
   transition: width 0.3s;
 
+  &--collapsed {
+    width: 64px;
+  }
+
+  :deep(.el-scrollbar) {
+    height: 100%;
+  }
+
+  :deep(.nk-basic-layout-menu__scroll-wrap) {
+    overflow-x: hidden;
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    cursor: pointer;
+    color: var(--nk-text-secondary, #666);
+    border-bottom: 1px solid var(--nk-border-color, #e8e8e8);
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+      background: var(--nk-bg-hover, #f5f5f5);
+      color: var(--nk-color-primary, #409eff);
+    }
+  }
+
   &__inner {
     border-right: none;
-    height: 100%;
+    height: calc(100% - 40px);
+    padding: 0 8px;
+    box-sizing: border-box;
+
+    :deep(.el-menu-item),
+    :deep(.el-sub-menu__title) {
+      padding-left: 12px !important;
+      padding-right: 12px !important;
+      margin: 1px 0;
+      border-radius: 4px;
+      height: 40px;
+      line-height: 40px;
+
+      > span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    // 折叠状态下居中图标
+    &.el-menu--collapse {
+      padding: 0;
+
+      :deep(.el-menu-item),
+      :deep(.el-sub-menu__title) {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin: 1px 0;
+        border-radius: 4px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+      }
+    }
   }
 }
 </style>

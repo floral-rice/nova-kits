@@ -22,8 +22,7 @@
   },
   "dependencies": {
     "@nova-kits/components": "workspace:*",
-    "@nova-kits/hooks": "workspace:*",
-    "element-plus": "^2.14.2"
+    "@nova-kits/hooks": "workspace:*"
   },
   "peerDependencies": {
     "vue": "^3.5.24",

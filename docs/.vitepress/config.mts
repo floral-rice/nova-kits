@@ -40,6 +40,7 @@ export default defineConfig({
     plugins: [createNovaPlugin({ root })],
     resolve: {
       alias: {
+        '@nova-kits/components/style.css': resolve(root, 'packages/components/dist/style.css'),
         '@nova-kits/components': resolve(root, 'packages/components/src/index.ts'),
         '@nova-kits/hooks': resolve(root, 'packages/hooks/src/index.ts'),
         '@nova-kits/kits': resolve(root, 'packages/kits/src/index.ts'),
