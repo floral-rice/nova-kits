@@ -1,11 +1,12 @@
 <template>
   <div
-    :class="[prefix(), props.class]"
+    class="nv-layout"
+    :class="[props.class]"
     :style="style"
   >
     <div
       v-if="$slots.header"
-      :class="[prefix('header')]"
+      class="nv-layout-header"
     >
       <slot name="header" />
       <div :id="teleportIds.header" />
@@ -26,7 +27,7 @@
     </LayoutContent>
     <div
       v-if="$slots.footer"
-      :class="[prefix('footer')]"
+      class="nv-layout-footer"
     >
       <slot name="footer" />
       <div :id="teleportIds.footer" />
@@ -36,12 +37,9 @@
 
 <script setup lang="ts">
   import { useId, computed } from 'vue';
-  import { prefixClassName } from '../utils';
   import LayoutContent from './LayoutContent.vue';
   import { provideLayoutContext } from './composables/useLayoutContext';
   import type { LayoutProps } from './typing';
-
-  const prefix = prefixClassName('layout');
 
   const props = withDefaults(defineProps<LayoutProps>(), {
     defaultSidebarWidth: 242,
@@ -69,7 +67,7 @@
 </script>
 
 <style scoped lang="scss">
-  .nova-layout {
+  .nv-layout {
     height: 100%;
     display: flex;
     flex-direction: column;

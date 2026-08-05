@@ -1,19 +1,20 @@
 <template>
   <div
-    :class="[prefix('tabs-layout'), props.class]"
+    class="nv-layout-tabs-layout"
+    :class="[props.class]"
     :style="style"
   >
     <div
       v-if="$slots.header"
-      :class="[prefix('header')]"
+      class="nv-layout-header"
     >
       <slot name="header" />
       <div :id="teleportIds.header" />
     </div>
-    <div :class="[prefix('tabs-wrapper')]">
+    <div class="nv-layout-tabs-wrapper">
       <ElTabs
         v-model="currentActiveKey"
-        :class="prefix('tabs')"
+        class="nv-layout-tabs"
         @tab-click="onTabClick"
       >
         <ElTabPane
@@ -41,7 +42,7 @@
     </div>
     <div
       v-if="$slots.footer"
-      :class="[prefix('footer')]"
+      class="nv-layout-footer"
     >
       <slot name="footer" />
       <div :id="teleportIds.footer" />
@@ -52,12 +53,9 @@
 <script setup lang="ts">
   import { computed, useId } from 'vue';
   import { ElTabs, ElTabPane } from 'element-plus';
-  import { prefixClassName } from '../utils';
   import LayoutContent from './LayoutContent.vue';
   import { provideLayoutContext } from './composables/useLayoutContext';
-  import type { Tab, LayoutTabsProps } from './typing';
-
-  const prefix = prefixClassName('layout');
+  import type { LayoutTabsProps } from './typing';
 
   const props = withDefaults(defineProps<LayoutTabsProps>(), {
     tabs: () => [],
@@ -98,7 +96,7 @@
 </script>
 
 <style scoped lang="scss">
-  .nova-layout {
+  .nv-layout {
     &-tabs-layout {
       height: 100%;
       display: flex;

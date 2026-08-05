@@ -1,1 +1,1 @@
-export const PREFIX_CLS = 'nova';
+export const PREFIX_CLS = 'nv';
