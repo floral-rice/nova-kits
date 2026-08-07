@@ -1,0 +1,26 @@
+.nv-grid {
+  // 颜色
+  --nv-grid-border-color: #ebeef5;
+  --nv-grid-header-bg: #f5f7fa;
+  --nv-grid-row-hover-bg: #f5f7fa;
+  --nv-grid-row-selected-bg: #ecf5ff;
+  --nv-grid-row-stripe-bg: #fafafa;
+  --nv-grid-cell-error-bg: #fef0f0;
+  --nv-grid-cell-error-border: #f56c6c;
+
+  // 间距
+  --nv-grid-cell-padding: 8px 12px;
+  --nv-grid-header-padding: 10px 12px;
+
+  // 字体
+  --nv-grid-font-size: 14px;
+  --nv-grid-header-font-size: 14px;
+  --nv-grid-header-font-weight: 600;
+  --nv-grid-empty-font-size: 14px;
+
+  // 圆角
+  --nv-grid-border-radius: 4px;
+
+  // 阴影
+  --nv-grid-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,14 @@
+.nv-grid__selected {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #ecf5ff;
+  border-radius: 4px;
+  margin-bottom: 8px;
+
+  &-text {
+    font-size: 14px;
+    color: #409eff;
+  }
+}

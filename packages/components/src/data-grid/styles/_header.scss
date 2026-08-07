@@ -1,0 +1,24 @@
+.nv-grid__header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  user-select: none;
+  width: 100%;
+  height: 100%;
+
+  &-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: var(--nv-grid-header-font-weight);
+  }
+
+  &-sort {
+    color: #409eff;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+  }
+}

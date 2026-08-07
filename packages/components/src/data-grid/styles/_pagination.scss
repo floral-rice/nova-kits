@@ -1,0 +1,23 @@
+.nv-grid__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 12px 0;
+  min-height: 32px;
+
+  &-total {
+    font-size: 14px;
+    color: #606266;
+    white-space: nowrap;
+  }
+
+  // 确保 el-pagination 有正确的高度和布局
+  .el-pagination {
+    height: auto;
+    min-height: 32px;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+  }
+}

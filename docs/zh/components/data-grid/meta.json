@@ -1,0 +1,7 @@
+{
+  "name": "DataGrid",
+  "title": "DataGrid",
+  "description": "基于 AG Grid + Element Plus 的增强表格组件",
+  "category": "通用",
+  "order": 2
+}

@@ -1,0 +1,45 @@
+.nv-grid__cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: var(--nv-grid-cell-padding);
+
+  &.is-summary {
+    font-weight: bold;
+    background: var(--nv-grid-header-bg);
+  }
+}
+
+.nv-grid__cell-index {
+  text-align: center;
+  color: #909399;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nv-grid__cell-validator {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  &.has-error {
+    background: var(--nv-grid-cell-error-bg);
+    border: 1px solid var(--nv-grid-cell-error-border);
+  }
+
+  &-icon {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--nv-grid-cell-error-border);
+    font-size: 14px;
+  }
+}

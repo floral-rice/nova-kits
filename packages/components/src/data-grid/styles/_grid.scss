@@ -1,0 +1,151 @@
+.nv-grid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  font-size: var(--nv-grid-font-size);
+  color: #303133;
+
+  // AG Grid 容器 - 直接包含 ag-theme-alpine
+  &__container {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+  }
+
+  &__loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 100;
+    border-radius: var(--nv-grid-border-radius);
+
+    &-spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid #e0e0e0;
+      border-top-color: #409eff;
+      border-radius: 50%;
+      animation: rotating 0.8s linear infinite;
+    }
+
+    span {
+      font-size: var(--nv-grid-empty-font-size);
+      color: #909399;
+    }
+  }
+
+  &__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    color: #909399;
+    font-size: var(--nv-grid-empty-font-size);
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-top: 1px solid var(--nv-grid-border-color);
+  }
+}
+
+// AG Grid 主题覆盖 - 选择器 .nv-grid__container.ag-theme-alpine
+// 因为 ag-theme-alpine 现在直接在 __container 上
+.nv-grid__container.ag-theme-alpine {
+  // 基础变量覆盖
+  --ag-grid-size: 5px;
+  --ag-row-height: 36px;
+  --ag-font-size: 14px;
+  --ag-icon-size: 16px;
+  --ag-background-color: #fff;
+  --ag-odd-row-background-color: #fafafa;
+  --ag-foreground-color: #303133;
+  --ag-border-color: #ebeef5;
+  --ag-row-hover-color: #f5f7fa;
+  --ag-header-background-color: #f5f7fa;
+  --ag-header-foreground-color: rgba(48, 49, 51, 0.8);
+  --ag-cell-horizontal-padding: 12px;
+  --ag-selected-row-background-color: #ecf5ff;
+  --ag-range-selection-border-color: #409eff;
+  --ag-range-selection-highlight-color: #ecf5ff;
+  --ag-checkbox-unchecked-color: #ccc;
+  --ag-checkbox-background-color: #fff;
+  --ag-checkbox-checked-color: #409eff;
+  --ag-input-border-color: transparent;
+  --ag-input-focus-border-color: transparent;
+  --ag-borders: solid 1px;
+  --ag-header-column-resize-handle-display: block;
+  --ag-header-column-resize-handle-width: 1px;
+  --ag-header-column-resize-handle-height: 12px;
+  --ag-header-column-resize-handle-color: #a8aebb;
+
+  // 外边框
+  .ag-root-wrapper {
+    border: 1px solid #ebeef5;
+    border-radius: 4px;
+  }
+
+  // 表头底部边框
+  .ag-header {
+    border-bottom: 1px solid #c8cbd1;
+  }
+
+  // 表头单元格右边框
+  .ag-header-cell {
+    border-right: 1px solid #ebeef5;
+  }
+
+  // 单元格边框
+  .ag-cell {
+    border-right: 1px solid #ebeef5;
+    border-bottom: 1px solid #ebeef5;
+  }
+
+  // 行边框
+  .ag-row {
+    border-bottom: 1px solid #ebeef5;
+  }
+
+  // 悬浮行样式
+  .ag-row:hover {
+    background-color: #f5f7fa !important;
+  }
+
+  // 选中行样式
+  .ag-row-selected {
+    background-color: #ecf5ff !important;
+  }
+
+  // 选中行 z-index 修复
+  .ag-row-selected::before {
+    z-index: -1;
+  }
+
+  // 聚焦单元格样式
+  .ag-cell-focus:not(.ag-cell-range-selected):not(.ag-cell-inline-editing) {
+    border-color: #409eff;
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
