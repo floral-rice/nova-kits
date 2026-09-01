@@ -1,6 +1,6 @@
 {
   "name": "@nova-kits/components",
-  "version": "1.0.3-alpha.0",
+  "version": "1.0.3-alpha.1",
   "description": "Nova Kits UI components - 基于 Element Plus 二次开发",
   "type": "module",
   "main": "./dist/index.umd.cjs",

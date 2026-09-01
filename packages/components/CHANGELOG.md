@@ -1,5 +1,11 @@
 # @nova-kits/components
 
+## 1.0.3-alpha.1
+
+### Patch Changes
+
+- 新增Section组件
+
 ## 1.0.3-alpha.0
 
 ### Patch Changes
