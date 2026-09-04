@@ -21,6 +21,7 @@
     "build": "vite build && vue-tsc --declaration --emitDeclarationOnly --outDir dist"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
     "element-plus": "^2.14.2",
     "splitpanes": "^4.1.2"
   },

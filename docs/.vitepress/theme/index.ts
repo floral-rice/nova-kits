@@ -2,6 +2,7 @@
 import DefaultTheme from 'vitepress/theme';
 import type { Theme } from 'vitepress';
 import { createRouter, createMemoryHistory } from 'vue-router';
+import ElementPlus from 'element-plus';
 import NovaDemo from '@nova-kits/docs-plugin/src/vue-components/NovaDemo.vue';
 import NovaApiDoc from '@nova-kits/docs-plugin/src/vue-components/NovaApiDoc.vue';
 import 'element-plus/dist/index.css';
@@ -21,6 +22,7 @@ export default {
   extends: DefaultTheme,
   enhanceApp({ app }) {
     app.use(router);
+    app.use(ElementPlus);
     app.component('NovaDemo', NovaDemo);
     app.component('NovaApiDoc', NovaApiDoc);
   },
