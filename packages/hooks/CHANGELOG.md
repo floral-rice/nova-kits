@@ -1,5 +1,13 @@
 # @nova-kits/hooks
 
+## 1.0.3
+
+### Patch Changes
+
+- c175511: 优化layout组件
+- 1a8008d: 新增Section组件
+- 1.0.3版本发布
+
 ## 1.0.3-alpha.1
 
 ### Patch Changes
